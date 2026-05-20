@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/report.css?v=20260520b">
+<link rel="stylesheet" href="./assets/css/report.css?v=20260520c">
 </head>
 <body>
 
@@ -121,42 +121,57 @@
   <!-- FINANCE / Care Support Pass 収支報告 -->
   <section class="report-section">
     <div class="section-title">Care Support Pass · Finance</div>
-    <h2 class="section-h">支援者数 と 収支報告</h2>
+    <h2 class="section-h">支援者数 と 収支報告 — 12ヶ月推移</h2>
 
-    <!-- 達成度メーター -->
-    <div class="finance-meter">
-      <div class="finance-meter-head">
-        <div class="finance-meter-label">支援者数 / 目標 25万人</div>
-        <div class="finance-meter-pct">34.0%</div>
-      </div>
-      <div class="finance-meter-bar">
-        <div class="finance-meter-fill" style="width:34.0%"></div>
-        <div class="finance-meter-target"></div>
-      </div>
-      <div class="finance-meter-foot">
-        <span>0</span>
-        <span class="finance-meter-target-label">目標 250,000名 / 月¥25,000,000</span>
-        <span>34.0%</span>
-      </div>
+    <!-- 折れ線グラフ 2枚 -->
+    <div class="finance-charts">
+      <figure class="finance-chart">
+        <figcaption class="finance-chart-title">
+          <span>支援者数の推移</span>
+          <small>目標 250,000 名 / 月</small>
+        </figcaption>
+        <svg class="chart-svg" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="月次推移グラフ"><line class="chart-grid" x1="56" y1="224.0" x2="624" y2="224.0"/><line class="chart-grid" x1="56" y1="172.5" x2="624" y2="172.5"/><line class="chart-grid" x1="56" y1="121.0" x2="624" y2="121.0"/><line class="chart-grid" x1="56" y1="69.5" x2="624" y2="69.5"/><line class="chart-grid" x1="56" y1="18.0" x2="624" y2="18.0"/><path class="chart-area" d="M 56.0,224.0 L 56.0,216.9 L 107.6,201.6 L 159.3,174.0 L 210.9,138.7 L 262.5,100.4 L 314.2,73.3 L 365.8,66.3 L 417.5,62.1 L 469.1,58.6 L 520.7,54.5 L 572.4,51.5 L 624.0,48.6 L 624.0,224.0 Z" fill="url(#chart-grad-total_supporters)"/><defs><linearGradient id="chart-grad-total_supporters" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" class="chart-grad-from"/><stop offset="100%" class="chart-grad-to"/></linearGradient></defs><line class="chart-target-line" x1="56" y1="76.9" x2="624" y2="76.9"/><text class="chart-target-label" x="618" y="70.9" text-anchor="end">目標 25万人</text><line class="chart-current-vline" x1="159.3" y1="18" x2="159.3" y2="224"/><path class="chart-line" d="M 56.0,216.9 L 107.6,201.6 L 159.3,174.0 L 210.9,138.7 L 262.5,100.4 L 314.2,73.3 L 365.8,66.3 L 417.5,62.1 L 469.1,58.6 L 520.7,54.5 L 572.4,51.5 L 624.0,48.6" fill="none"/><circle class="chart-dot" cx="56.0" cy="216.9" r="3.5"/><circle class="chart-dot" cx="107.6" cy="201.6" r="3.5"/><circle class="chart-dot-current" cx="159.3" cy="174.0" r="6"/><circle class="chart-dot-current-ring" cx="159.3" cy="174.0" r="10"/><circle class="chart-dot" cx="210.9" cy="138.7" r="3.5"/><circle class="chart-dot" cx="262.5" cy="100.4" r="3.5"/><circle class="chart-dot" cx="314.2" cy="73.3" r="3.5"/><circle class="chart-dot" cx="365.8" cy="66.3" r="3.5"/><circle class="chart-dot" cx="417.5" cy="62.1" r="3.5"/><circle class="chart-dot" cx="469.1" cy="58.6" r="3.5"/><circle class="chart-dot" cx="520.7" cy="54.5" r="3.5"/><circle class="chart-dot" cx="572.4" cy="51.5" r="3.5"/><circle class="chart-dot" cx="624.0" cy="48.6" r="3.5"/><text class="chart-y-label" x="48" y="228.0" text-anchor="end">0</text><text class="chart-y-label" x="48" y="176.5" text-anchor="end">8万</text><text class="chart-y-label" x="48" y="125.0" text-anchor="end">17万</text><text class="chart-y-label" x="48" y="73.5" text-anchor="end">26万</text><text class="chart-y-label" x="48" y="22.0" text-anchor="end">35万</text><text class="chart-x-label" x="56.0" y="246" text-anchor="middle">'25.6</text><text class="chart-x-label" x="107.6" y="246" text-anchor="middle">7月</text><text class="chart-x-label" x="159.3" y="246" text-anchor="middle">8月</text><text class="chart-x-label" x="210.9" y="246" text-anchor="middle">9月</text><text class="chart-x-label" x="262.5" y="246" text-anchor="middle">10月</text><text class="chart-x-label" x="314.2" y="246" text-anchor="middle">11月</text><text class="chart-x-label" x="365.8" y="246" text-anchor="middle">12月</text><text class="chart-x-label" x="417.5" y="246" text-anchor="middle">1月</text><text class="chart-x-label" x="469.1" y="246" text-anchor="middle">2月</text><text class="chart-x-label" x="520.7" y="246" text-anchor="middle">3月</text><text class="chart-x-label" x="572.4" y="246" text-anchor="middle">4月</text><text class="chart-x-label" x="624.0" y="246" text-anchor="middle">5月</text><text class="chart-current-label" x="159.3" y="160.0" text-anchor="middle">8万</text></svg>
+      </figure>
+      <figure class="finance-chart">
+        <figcaption class="finance-chart-title">
+          <span>累計支援額の推移</span>
+          <small>1年間累計</small>
+        </figcaption>
+        <svg class="chart-svg" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="月次推移グラフ"><line class="chart-grid" x1="56" y1="224.0" x2="624" y2="224.0"/><line class="chart-grid" x1="56" y1="172.5" x2="624" y2="172.5"/><line class="chart-grid" x1="56" y1="121.0" x2="624" y2="121.0"/><line class="chart-grid" x1="56" y1="69.5" x2="624" y2="69.5"/><line class="chart-grid" x1="56" y1="18.0" x2="624" y2="18.0"/><path class="chart-area" d="M 56.0,224.0 L 56.0,223.2 L 107.6,220.6 L 159.3,214.7 L 210.9,204.8 L 262.5,190.4 L 314.2,172.8 L 365.8,154.4 L 417.5,135.5 L 469.1,116.2 L 520.7,96.4 L 572.4,76.3 L 624.0,55.8 L 624.0,224.0 Z" fill="url(#chart-grad-cumulative_revenue_jpy)"/><defs><linearGradient id="chart-grad-cumulative_revenue_jpy" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" class="chart-grad-from"/><stop offset="100%" class="chart-grad-to"/></linearGradient></defs><line class="chart-current-vline" x1="159.3" y1="18" x2="159.3" y2="224"/><path class="chart-line" d="M 56.0,223.2 L 107.6,220.6 L 159.3,214.7 L 210.9,204.8 L 262.5,190.4 L 314.2,172.8 L 365.8,154.4 L 417.5,135.5 L 469.1,116.2 L 520.7,96.4 L 572.4,76.3 L 624.0,55.8" fill="none"/><circle class="chart-dot" cx="56.0" cy="223.2" r="3.5"/><circle class="chart-dot" cx="107.6" cy="220.6" r="3.5"/><circle class="chart-dot-current" cx="159.3" cy="214.7" r="6"/><circle class="chart-dot-current-ring" cx="159.3" cy="214.7" r="10"/><circle class="chart-dot" cx="210.9" cy="204.8" r="3.5"/><circle class="chart-dot" cx="262.5" cy="190.4" r="3.5"/><circle class="chart-dot" cx="314.2" cy="172.8" r="3.5"/><circle class="chart-dot" cx="365.8" cy="154.4" r="3.5"/><circle class="chart-dot" cx="417.5" cy="135.5" r="3.5"/><circle class="chart-dot" cx="469.1" cy="116.2" r="3.5"/><circle class="chart-dot" cx="520.7" cy="96.4" r="3.5"/><circle class="chart-dot" cx="572.4" cy="76.3" r="3.5"/><circle class="chart-dot" cx="624.0" cy="55.8" r="3.5"/><text class="chart-y-label" x="48" y="228.0" text-anchor="end">0万</text><text class="chart-y-label" x="48" y="176.5" text-anchor="end">7000万</text><text class="chart-y-label" x="48" y="125.0" text-anchor="end">1億</text><text class="chart-y-label" x="48" y="73.5" text-anchor="end">2億</text><text class="chart-y-label" x="48" y="22.0" text-anchor="end">3億</text><text class="chart-x-label" x="56.0" y="246" text-anchor="middle">'25.6</text><text class="chart-x-label" x="107.6" y="246" text-anchor="middle">7月</text><text class="chart-x-label" x="159.3" y="246" text-anchor="middle">8月</text><text class="chart-x-label" x="210.9" y="246" text-anchor="middle">9月</text><text class="chart-x-label" x="262.5" y="246" text-anchor="middle">10月</text><text class="chart-x-label" x="314.2" y="246" text-anchor="middle">11月</text><text class="chart-x-label" x="365.8" y="246" text-anchor="middle">12月</text><text class="chart-x-label" x="417.5" y="246" text-anchor="middle">1月</text><text class="chart-x-label" x="469.1" y="246" text-anchor="middle">2月</text><text class="chart-x-label" x="520.7" y="246" text-anchor="middle">3月</text><text class="chart-x-label" x="572.4" y="246" text-anchor="middle">4月</text><text class="chart-x-label" x="624.0" y="246" text-anchor="middle">5月</text><text class="chart-current-label" x="159.3" y="200.7" text-anchor="middle">1000万</text></svg>
+      </figure>
     </div>
 
-    <!-- 主要指標 -->
-    <div class="finance-stats">
-      <div class="finance-stat">
-        <div class="finance-stat-label">当月 支援者数</div>
-        <div class="finance-stat-value">85,000<small>名</small></div>
-      </div>
-      <div class="finance-stat">
-        <div class="finance-stat-label">当月 支援額</div>
-        <div class="finance-stat-value">¥8,500,000</div>
-      </div>
-      <div class="finance-stat">
-        <div class="finance-stat-label">累計 支援額</div>
-        <div class="finance-stat-value">¥13,500,000</div>
-      </div>
+    <!-- 12ヶ月推移表 -->
+    <div class="finance-table-wrap">
+      <table class="finance-timeline">
+        <thead>
+          <tr>
+            <th>月</th>
+            <th class="num">支援者数</th>
+            <th class="num">月収入</th>
+            <th class="num">累計</th>
+            <th class="num">達成率</th>
+            <th>使い道(要約)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="finance-row"><td class="period-cell">25.6</td><td class="num">1.2万<small>名</small></td><td class="num">¥120万</td><td class="num">¥120万</td><td class="num pct"><span class="pct-badge">4.8%</span></td><td class="use">導入初月のため、頂いた支援金は次月以降の入居者還元施策</td></tr>
+          <tr class="finance-row"><td class="period-cell">25.7</td><td class="num">3.8万<small>名</small></td><td class="num">¥380万</td><td class="num">¥500万</td><td class="num pct"><span class="pct-badge">15.2%</span></td><td class="use">入居者お一人あたり月額負担を ¥170,000 → ¥150,000 に減額</td></tr>
+          <tr class="finance-row current"><td class="period-cell">25.8</td><td class="num">8.5万<small>名</small></td><td class="num">¥850万</td><td class="num">¥1,350万</td><td class="num pct"><span class="pct-badge">34.0%</span></td><td class="use">夏季電気代の施設負担化</td></tr>
+          <tr class="finance-row"><td class="period-cell">25.9</td><td class="num">14.5万<small>名</small></td><td class="num">¥1,450万</td><td class="num">¥2,800万</td><td class="num pct"><span class="pct-badge">58.0%</span></td><td class="use">看護師1名の常勤雇用</td></tr>
+          <tr class="finance-row"><td class="period-cell">25.10</td><td class="num">21万<small>名</small></td><td class="num">¥2,100万</td><td class="num">¥4,900万</td><td class="num pct"><span class="pct-badge">84.0%</span></td><td class="use">理学療法士1名の常駐雇用</td></tr>
+          <tr class="finance-row achieved"><td class="period-cell">25.11</td><td class="num">25.6万<small>名</small></td><td class="num">¥2,560万</td><td class="num">¥7,460万</td><td class="num pct"><span class="pct-badge">102.4%</span></td><td class="use">★ 目標支援者数 25万人 達成</td></tr>
+          <tr class="finance-row achieved"><td class="period-cell">25.12</td><td class="num">26.8万<small>名</small></td><td class="num">¥2,680万</td><td class="num">¥1.0億</td><td class="num pct"><span class="pct-badge">107.2%</span></td><td class="use">年末年始24時間医療体制を完全無料化</td></tr>
+          <tr class="finance-row achieved"><td class="period-cell">26.1</td><td class="num">27.5万<small>名</small></td><td class="num">¥2,750万</td><td class="num">¥1.3億</td><td class="num pct"><span class="pct-badge">110.0%</span></td><td class="use">月次イベント予算を月¥30,000 → 月¥150,000 へ5倍化、全既存施策の継続</td></tr>
+          <tr class="finance-row achieved"><td class="period-cell">26.2</td><td class="num">28.1万<small>名</small></td><td class="num">¥2,810万</td><td class="num">¥1.6億</td><td class="num pct"><span class="pct-badge">112.4%</span></td><td class="use">嚥下対応個別調整食の完全無償化(月¥165,000の負担軽減)、全既存施策の継続</td></tr>
+          <tr class="finance-row achieved"><td class="period-cell">26.3</td><td class="num">28.8万<small>名</small></td><td class="num">¥2,880万</td><td class="num">¥1.9億</td><td class="num pct"><span class="pct-badge">115.2%</span></td><td class="use">ご家族通信費補助</td></tr>
+          <tr class="finance-row achieved"><td class="period-cell">26.4</td><td class="num">29.3万<small>名</small></td><td class="num">¥2,930万</td><td class="num">¥2.2億</td><td class="num pct"><span class="pct-badge">117.2%</span></td><td class="use">介護タクシー外出費の月1回まで施設負担化</td></tr>
+          <tr class="finance-row achieved"><td class="period-cell">26.5</td><td class="num">29.8万<small>名</small></td><td class="num">¥2,980万</td><td class="num">¥2.4億</td><td class="num pct"><span class="pct-badge">119.2%</span></td><td class="use">★ Care Support Pass 導入1周年特別還元: スタッフ全員 初年度昇給+10%</td></tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- 使い道 -->
+    <!-- 当月の使い道 (詳細) -->
     <div class="finance-use">
       <div class="finance-use-title">支援金の使い道 — 2025年8月</div>
       <p class="finance-use-text">夏季電気代の施設負担化(月¥320,000)、スタッフ夏季手当(¥30,000 × 14名 = ¥420,000)、月額負担減額の継続。</p>

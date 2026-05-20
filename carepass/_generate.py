@@ -31,7 +31,7 @@ REPORT_TEMPLATE = """<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/report.css?v=20260520b">
+<link rel="stylesheet" href="./assets/css/report.css?v=20260520c">
 </head>
 <body>
 
@@ -99,42 +99,46 @@ REPORT_TEMPLATE = """<!doctype html>
   <!-- FINANCE / Care Support Pass 収支報告 -->
   <section class="report-section">
     <div class="section-title">Care Support Pass · Finance</div>
-    <h2 class="section-h">支援者数 と 収支報告</h2>
+    <h2 class="section-h">支援者数 と 収支報告 — 12ヶ月推移</h2>
 
-    <!-- 達成度メーター -->
-    <div class="finance-meter">
-      <div class="finance-meter-head">
-        <div class="finance-meter-label">支援者数 / 目標 25万人</div>
-        <div class="finance-meter-pct">{progress_pct}%</div>
-      </div>
-      <div class="finance-meter-bar">
-        <div class="finance-meter-fill{meter_class}" style="width:{progress_bar_pct}%"></div>
-        <div class="finance-meter-target"></div>
-      </div>
-      <div class="finance-meter-foot">
-        <span>0</span>
-        <span class="finance-meter-target-label">目標 250,000名 / 月¥25,000,000</span>
-        <span>{progress_pct}%</span>
-      </div>
+    <!-- 折れ線グラフ 2枚 -->
+    <div class="finance-charts">
+      <figure class="finance-chart">
+        <figcaption class="finance-chart-title">
+          <span>支援者数の推移</span>
+          <small>目標 250,000 名 / 月</small>
+        </figcaption>
+        {chart_supporters_svg}
+      </figure>
+      <figure class="finance-chart">
+        <figcaption class="finance-chart-title">
+          <span>累計支援額の推移</span>
+          <small>1年間累計</small>
+        </figcaption>
+        {chart_cumulative_svg}
+      </figure>
     </div>
 
-    <!-- 主要指標 -->
-    <div class="finance-stats">
-      <div class="finance-stat">
-        <div class="finance-stat-label">当月 支援者数</div>
-        <div class="finance-stat-value">{total_supporters_str}<small>名</small></div>
-      </div>
-      <div class="finance-stat">
-        <div class="finance-stat-label">当月 支援額</div>
-        <div class="finance-stat-value">¥{monthly_revenue_str}</div>
-      </div>
-      <div class="finance-stat">
-        <div class="finance-stat-label">累計 支援額</div>
-        <div class="finance-stat-value">¥{cumulative_revenue_str}</div>
-      </div>
+    <!-- 12ヶ月推移表 -->
+    <div class="finance-table-wrap">
+      <table class="finance-timeline">
+        <thead>
+          <tr>
+            <th>月</th>
+            <th class="num">支援者数</th>
+            <th class="num">月収入</th>
+            <th class="num">累計</th>
+            <th class="num">達成率</th>
+            <th>使い道(要約)</th>
+          </tr>
+        </thead>
+        <tbody>
+{timeline_rows}
+        </tbody>
+      </table>
     </div>
 
-    <!-- 使い道 -->
+    <!-- 当月の使い道 (詳細) -->
     <div class="finance-use">
       <div class="finance-use-title">支援金の使い道 — {period_ja}</div>
       <p class="finance-use-text">{use_of_funds}</p>
@@ -200,7 +204,7 @@ INDEX_TEMPLATE = """<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/report.css?v=20260520b">
+<link rel="stylesheet" href="./assets/css/report.css?v=20260520c">
 <style>
 .list-grid {{
   display: grid;
@@ -526,6 +530,208 @@ def render_message(msg):
     return escape(msg).replace("\n", "<br>")
 
 
+# =====================================================================
+# 12ヶ月推移表 + 折れ線グラフ (各月レポート内)
+# =====================================================================
+
+def _short_use(use_of_funds):
+    """使い道テキストを推移表用に短縮: 最初の句点までを抽出"""
+    if not use_of_funds:
+        return ""
+    text = use_of_funds.replace("\n", " ").strip()
+    # 最初の「。」「、(長文の場合)」までを取り出す
+    if "。" in text:
+        head = text.split("。", 1)[0]
+        # 短すぎず長すぎない長さに
+        if len(head) <= 50:
+            return head
+        # 50文字超なら、最初の括弧前で切る
+        for sep in ["(", "(", "、"]:
+            if sep in head:
+                head = head.split(sep, 1)[0]
+                break
+        return head[:50]
+    return text[:50]
+
+
+def render_timeline_rows(months, current_idx):
+    """全12ヶ月分の推移表 tbody を生成。現在月の行はハイライト。"""
+    parts = []
+    for i, m in enumerate(months):
+        fin = m["finance"]
+        period = m["period"]
+        # 「2025-06」→「2025.6」のような表示
+        year, mm = period.split("-")
+        period_label = f"{year[2:]}.{int(mm)}"
+        supporters_short = fmt_short_number(fin["total_supporters"])
+        monthly_short = fmt_short_money(fin["monthly_revenue_jpy"])
+        cumulative_short = fmt_short_money(fin["cumulative_revenue_jpy"])
+        progress_pct = fin["progress_pct"]
+        achieved = " achieved" if progress_pct >= 100 else ""
+        current = " current" if i == current_idx else ""
+        use_short = escape(_short_use(fin.get("use_of_funds", "")))
+        parts.append(
+            f'          <tr class="finance-row{current}{achieved}">'
+            f'<td class="period-cell">{period_label}</td>'
+            f'<td class="num">{supporters_short}<small>名</small></td>'
+            f'<td class="num">¥{monthly_short}</td>'
+            f'<td class="num">¥{cumulative_short}</td>'
+            f'<td class="num pct"><span class="pct-badge">{progress_pct}%</span></td>'
+            f'<td class="use">{use_short}</td>'
+            f'</tr>'
+        )
+    return "\n".join(parts)
+
+
+# SVGチャートのレイアウト定数 (viewBox 座標)
+# ※ CSS で width:100% にスケール。viewBox 比率は 4:1.6 ぐらい。
+CHART_W = 640
+CHART_H = 260
+CHART_PAD_L = 56   # 左マージン(Y軸ラベル用)
+CHART_PAD_R = 16
+CHART_PAD_T = 18
+CHART_PAD_B = 36   # 下マージン(X軸ラベル用)
+
+
+def _chart_x(i, n):
+    """i番目の月の X座標 (0始まり, nは全月数)"""
+    if n <= 1:
+        return CHART_PAD_L
+    inner_w = CHART_W - CHART_PAD_L - CHART_PAD_R
+    return CHART_PAD_L + (inner_w * i / (n - 1))
+
+
+def _chart_y(v, y_max, y_min=0):
+    """値 v を Y座標に変換"""
+    if y_max == y_min:
+        return CHART_H - CHART_PAD_B
+    inner_h = CHART_H - CHART_PAD_T - CHART_PAD_B
+    return CHART_H - CHART_PAD_B - (inner_h * (v - y_min) / (y_max - y_min))
+
+
+def render_line_chart(months, current_idx, *, value_key, y_max, y_label_fn,
+                      target=None, target_label=None, accent="var(--accent)"):
+    """折れ線グラフのSVGを生成。
+    months: データ配列
+    value_key: 'total_supporters' か 'cumulative_revenue_jpy' か 'monthly_revenue_jpy'
+    y_max: Y軸最大値 (グリッドはこの値を5等分)
+    y_label_fn: Y軸ラベル整形関数 (例: lambda v: f"{v/10000:.0f}万")
+    target: 目標値ライン (任意)
+    target_label: 目標ラベル
+    accent: 線色のCSS変数
+    """
+    n = len(months)
+    values = [m["finance"][value_key] for m in months]
+
+    # ポリライン用点列
+    points = []
+    for i, v in enumerate(values):
+        x = _chart_x(i, n)
+        y = _chart_y(v, y_max)
+        points.append((x, y))
+
+    # 塗り(area)用パス
+    area_d = (
+        f"M {points[0][0]:.1f},{CHART_H - CHART_PAD_B:.1f} "
+        + " ".join(f"L {x:.1f},{y:.1f}" for x, y in points)
+        + f" L {points[-1][0]:.1f},{CHART_H - CHART_PAD_B:.1f} Z"
+    )
+    # 折れ線
+    line_d = "M " + " L ".join(f"{x:.1f},{y:.1f}" for x, y in points)
+
+    # 目標ライン
+    target_elements = ""
+    if target is not None and target <= y_max:
+        ty = _chart_y(target, y_max)
+        target_elements = (
+            f'<line class="chart-target-line" x1="{CHART_PAD_L}" y1="{ty:.1f}" '
+            f'x2="{CHART_W - CHART_PAD_R}" y2="{ty:.1f}"/>'
+            f'<text class="chart-target-label" x="{CHART_W - CHART_PAD_R - 6}" y="{ty - 6:.1f}" '
+            f'text-anchor="end">{escape(target_label or "")}</text>'
+        )
+
+    # Y軸グリッド + ラベル (4本)
+    grid_lines = []
+    y_labels = []
+    for step in range(0, 5):
+        v = y_max * step / 4
+        gy = _chart_y(v, y_max)
+        grid_lines.append(
+            f'<line class="chart-grid" x1="{CHART_PAD_L}" y1="{gy:.1f}" '
+            f'x2="{CHART_W - CHART_PAD_R}" y2="{gy:.1f}"/>'
+        )
+        y_labels.append(
+            f'<text class="chart-y-label" x="{CHART_PAD_L - 8}" y="{gy + 4:.1f}" '
+            f'text-anchor="end">{escape(y_label_fn(v))}</text>'
+        )
+
+    # X軸ラベル (全月ラベル)
+    x_labels = []
+    for i, m in enumerate(months):
+        x = _chart_x(i, n)
+        year, mm = m["period"].split("-")
+        label = f"{int(mm)}月"
+        # 6月だけ年も足す
+        if int(mm) == 6 or i == 0:
+            label = f"'{year[2:]}.{int(mm)}"
+        x_labels.append(
+            f'<text class="chart-x-label" x="{x:.1f}" y="{CHART_H - 14}" '
+            f'text-anchor="middle">{label}</text>'
+        )
+
+    # データ点 (現在月は大きい円, それ以外は小さい円)
+    dots = []
+    for i, (x, y) in enumerate(points):
+        if i == current_idx:
+            dots.append(
+                f'<circle class="chart-dot-current" cx="{x:.1f}" cy="{y:.1f}" r="6"/>'
+                f'<circle class="chart-dot-current-ring" cx="{x:.1f}" cy="{y:.1f}" r="10"/>'
+            )
+        else:
+            dots.append(f'<circle class="chart-dot" cx="{x:.1f}" cy="{y:.1f}" r="3.5"/>')
+
+    # 現在月の縦点線
+    cur_x = points[current_idx][0]
+    current_marker = (
+        f'<line class="chart-current-vline" x1="{cur_x:.1f}" y1="{CHART_PAD_T}" '
+        f'x2="{cur_x:.1f}" y2="{CHART_H - CHART_PAD_B}"/>'
+    )
+
+    # 現在月の値ラベル (吹き出し風)
+    cur_v = values[current_idx]
+    cur_y = points[current_idx][1]
+    cur_label_text = y_label_fn(cur_v)
+    # 上に余裕があれば上、なければ下
+    label_above = cur_y > CHART_PAD_T + 28
+    cur_label_y = cur_y - 14 if label_above else cur_y + 22
+    current_label = (
+        f'<text class="chart-current-label" x="{cur_x:.1f}" y="{cur_label_y:.1f}" '
+        f'text-anchor="middle">{escape(cur_label_text)}</text>'
+    )
+
+    svg = (
+        f'<svg class="chart-svg" viewBox="0 0 {CHART_W} {CHART_H}" '
+        f'xmlns="http://www.w3.org/2000/svg" role="img" aria-label="月次推移グラフ">'
+        + "".join(grid_lines)
+        + (
+            f'<path class="chart-area" d="{area_d}" fill="url(#chart-grad-{value_key})"/>'
+            f'<defs><linearGradient id="chart-grad-{value_key}" x1="0" y1="0" x2="0" y2="1">'
+            f'<stop offset="0%" class="chart-grad-from"/>'
+            f'<stop offset="100%" class="chart-grad-to"/>'
+            f'</linearGradient></defs>'
+        )
+        + target_elements
+        + current_marker
+        + f'<path class="chart-line" d="{line_d}" fill="none"/>'
+        + "".join(dots)
+        + "".join(y_labels)
+        + "".join(x_labels)
+        + current_label
+        + '</svg>'
+    )
+    return svg
+
+
 def main():
     with open(DATA_FILE, "r", encoding="utf-8") as f:
         months = json.load(f)
@@ -567,6 +773,33 @@ def main():
             progress_bar_pct = progress_pct
             meter_class = ""
 
+        # 推移表
+        timeline_rows = render_timeline_rows(months, idx)
+
+        # グラフ1: 支援者数 (目標25万ライン入り)
+        # Y軸最大値は 30万 (全データが収まる + 目標ラインが見やすい)
+        max_supporters_in_data = max(mo["finance"]["total_supporters"] for mo in months)
+        y_max_supporters = max(300000, int((max_supporters_in_data * 1.1) // 50000 + 1) * 50000)
+        chart_supporters_svg = render_line_chart(
+            months, idx,
+            value_key="total_supporters",
+            y_max=y_max_supporters,
+            y_label_fn=lambda v: f"{int(v/10000)}万" if v >= 10000 else f"{int(v):,}",
+            target=TARGET_SUPPORTERS,
+            target_label="目標 25万人",
+        )
+
+        # グラフ2: 累計支援額
+        max_cum_in_data = max(mo["finance"]["cumulative_revenue_jpy"] for mo in months)
+        # 1億単位で切り上げ
+        y_max_cum = max(300000000, int((max_cum_in_data * 1.1) // 50000000 + 1) * 50000000)
+        chart_cumulative_svg = render_line_chart(
+            months, idx,
+            value_key="cumulative_revenue_jpy",
+            y_max=y_max_cum,
+            y_label_fn=lambda v: f"{int(v/100000000)}億" if v >= 100000000 else f"{int(v/10000000)*1000}万",
+        )
+
         month_nav = render_month_nav(periods, idx)
 
         html = REPORT_TEMPLATE.format(
@@ -583,12 +816,9 @@ def main():
             photo_blocks=photo_blocks,
             body_blocks=body_blocks,
             message=message,
-            total_supporters_str=total_supporters_str,
-            monthly_revenue_str=monthly_revenue_str,
-            cumulative_revenue_str=cumulative_revenue_str,
-            progress_pct=progress_pct,
-            progress_bar_pct=progress_bar_pct,
-            meter_class=meter_class,
+            timeline_rows=timeline_rows,
+            chart_supporters_svg=chart_supporters_svg,
+            chart_cumulative_svg=chart_cumulative_svg,
             use_of_funds=escape(use_of_funds),
             month_nav=month_nav,
         )
