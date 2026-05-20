@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>月次活動報告書 一覧 | タムジレジデンス日本橋</title>
-<meta name="description" content="タムジレジデンス日本橋の月次活動報告書一覧。Care Support Pass を通じて毎月の活動を公開しています。">
+<meta name="description" content="タムジレジデンス日本橋の月次活動報告書一覧。Care Support Pass を通じて毎月の活動と収支を公開しています。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/report.css?v=20260520">
+<link rel="stylesheet" href="./assets/css/report.css?v=20260520b">
 <style>
 .list-grid {
   display: grid;
@@ -82,6 +82,65 @@
 .month-card:hover .body .meta { color: rgba(246,241,232,.5); border-top-color: rgba(255,255,255,.15); }
 .month-card .arrow { font-family: var(--mono); font-size: 14px; color: var(--accent); }
 .month-card:hover .body .arrow { color: var(--accent-2); }
+
+/* === 年間サマリ === */
+.year-summary {
+  background: linear-gradient(135deg, var(--ink), var(--ink-2));
+  color: var(--paper);
+  padding: 36px 32px;
+  margin-bottom: 32px;
+  border: 1px solid var(--ink);
+}
+.year-summary-mark {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 12px;
+}
+.year-summary-title {
+  font-family: var(--jp-serif);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 24px;
+}
+.year-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  border-top: 1px solid rgba(255,255,255,.15);
+  padding-top: 24px;
+}
+.year-summary-stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(246,241,232,.55);
+  margin-bottom: 6px;
+}
+.year-summary-stat-value {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--paper);
+  letter-spacing: -.01em;
+}
+.year-summary-stat-value small {
+  font-size: 13px;
+  font-family: var(--mono);
+  color: rgba(246,241,232,.55);
+  margin-left: 4px;
+  font-weight: 400;
+}
+.year-summary-note {
+  font-family: var(--jp-serif);
+  font-size: 13px;
+  color: rgba(246,241,232,.7);
+  margin-top: 20px;
+  line-height: 1.8;
+}
 </style>
 </head>
 <body>
@@ -107,8 +166,34 @@
     <div class="report-period">2025 / 26 ─ 12 months</div>
     <h1>月次活動報告書</h1>
     <p class="report-lede">
-      タムジレジデンス日本橋は <a href="https://carepass.tamjump.com" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Care Support Pass</a> の導入施設として、毎月の活動状況・支援者の状況を公開しています。
+      タムジレジデンス日本橋は <a href="https://carepass.tamjump.com" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Care Support Pass</a> の導入施設として、毎月の活動状況・支援者数・収支の使い道を公開しています。
     </p>
+  </section>
+
+  <!-- 年間サマリ -->
+  <section class="report-section">
+    <div class="year-summary">
+      <div class="year-summary-mark">Year-One Summary · 2025.6 — 2026.5</div>
+      <h2 class="year-summary-title">Care Support Pass 導入1周年 · 累計実績</h2>
+      <div class="year-summary-grid">
+        <div>
+          <div class="year-summary-stat-label">累計 支援者数 (最新月)</div>
+          <div class="year-summary-stat-value">298,000<small>名</small></div>
+        </div>
+        <div>
+          <div class="year-summary-stat-label">12ヶ月 累計支援額</div>
+          <div class="year-summary-stat-value">¥244,900,000</div>
+        </div>
+        <div>
+          <div class="year-summary-stat-label">目標達成率 (25万人比)</div>
+          <div class="year-summary-stat-value">119.2<small>%</small></div>
+        </div>
+      </div>
+      <p class="year-summary-note">
+        2025年6月、目標支援者 12,000名(4.8%)からスタート。2025年11月に目標 25万人 を達成、現在も成長を継続しています。
+        各月の収支の使い道は、それぞれの活動報告ページ内「Care Support Pass · Finance」セクションに記載しています。
+      </p>
+    </div>
   </section>
 
   <section class="report-section">
@@ -118,122 +203,122 @@
     <div class="list-grid">
 
       <a href="./2026-05.html" class="month-card">
-        <img src="/assets/images/month-2026-05-tango.webp" alt="端午の節句" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2026-05-tango.webp" alt="端午の節句、そして Care Support Pass 導入1周年" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">May 2026</div>
         <div class="period-ja">2026年5月</div>
-        <p class="theme">端午の節句、そして開業1.5周年</p>
-        <div class="meta"><span>支援者 1名 / ¥1,200</span><span class="arrow">→</span></div>
+        <p class="theme">端午の節句、そして Care Support Pass 導入1周年</p>
+        <div class="meta"><span>29.8万名 / ¥2,980万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
       <a href="./2026-04.html" class="month-card">
-        <img src="/assets/images/month-2026-04-hanami.webp" alt="お花見" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2026-04-hanami.webp" alt="お花見と、新しい季節 — 介護タクシー外出費の施設負担化" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">April 2026</div>
         <div class="period-ja">2026年4月</div>
-        <p class="theme">お花見と、新しい季節</p>
-        <div class="meta"><span>支援者 1名 / ¥1,100</span><span class="arrow">→</span></div>
+        <p class="theme">お花見と、新しい季節 — 介護タクシー外出費の施設負担化</p>
+        <div class="meta"><span>29.3万名 / ¥2,930万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
       <a href="./2026-03.html" class="month-card">
-        <img src="/assets/images/month-2026-03-hinamatsuri.webp" alt="雛祭り" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2026-03-hinamatsuri.webp" alt="ひな祭りと、春の気配 — ご家族通信費補助の開始" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">March 2026</div>
         <div class="period-ja">2026年3月</div>
-        <p class="theme">ひな祭りと、春の気配</p>
-        <div class="meta"><span>支援者 1名 / ¥1,000</span><span class="arrow">→</span></div>
+        <p class="theme">ひな祭りと、春の気配 — ご家族通信費補助の開始</p>
+        <div class="meta"><span>28.8万名 / ¥2,880万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
       <a href="./2026-02.html" class="month-card">
-        <img src="/assets/images/month-2026-02-setsubun.webp" alt="節分" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2026-02-setsubun.webp" alt="節分と、立春の気配 — 嚥下対応個別食の完全無償化" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">February 2026</div>
         <div class="period-ja">2026年2月</div>
-        <p class="theme">節分と、立春の気配</p>
-        <div class="meta"><span>支援者 1名 / ¥900</span><span class="arrow">→</span></div>
+        <p class="theme">節分と、立春の気配 — 嚥下対応個別食の完全無償化</p>
+        <div class="meta"><span>28.1万名 / ¥2,810万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
       <a href="./2026-01.html" class="month-card">
-        <img src="/assets/images/month-2026-01-mochitsuki.webp" alt="新年・餅つき" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2026-01-mochitsuki.webp" alt="新年の祝い、そして餅つき — イベント予算を5倍に拡充" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">January 2026</div>
         <div class="period-ja">2026年1月</div>
-        <p class="theme">新年の祝い、そして餅つき</p>
-        <div class="meta"><span>支援者 1名 / ¥800</span><span class="arrow">→</span></div>
+        <p class="theme">新年の祝い、そして餅つき — イベント予算を5倍に拡充</p>
+        <div class="meta"><span>27.5万名 / ¥2,750万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
       <a href="./2025-12.html" class="month-card">
-        <img src="/assets/images/month-2025-12-christmas.webp" alt="クリスマス会" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2025-12-christmas.webp" alt="クリスマス、そして年の瀬の整え — 年末年始医療体制の完全無料化" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">December 2025</div>
         <div class="period-ja">2025年12月</div>
-        <p class="theme">クリスマス、そして年の瀬の整え</p>
-        <div class="meta"><span>支援者 1名 / ¥700</span><span class="arrow">→</span></div>
+        <p class="theme">クリスマス、そして年の瀬の整え — 年末年始医療体制の完全無料化</p>
+        <div class="meta"><span>26.8万名 / ¥2,680万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
       <a href="./2025-11.html" class="month-card">
-        <img src="/assets/images/month-2025-11-bunkasai.webp" alt="文化祭" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2025-11-bunkasai.webp" alt="和装と、冬支度 — ★ 目標支援者数 25万人 達成" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">November 2025</div>
         <div class="period-ja">2025年11月</div>
-        <p class="theme">和装と、冬支度</p>
-        <div class="meta"><span>支援者 1名 / ¥600</span><span class="arrow">→</span></div>
+        <p class="theme">和装と、冬支度 — ★ 目標支援者数 25万人 達成</p>
+        <div class="meta"><span>25.6万名 / ¥2,560万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
       <a href="./2025-10.html" class="month-card">
-        <img src="/assets/images/month-2025-10-momiji.webp" alt="紅葉散歩" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2025-10-momiji.webp" alt="紅葉散歩と、文化祭 — リハビリ専門職の常駐化" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">October 2025</div>
         <div class="period-ja">2025年10月</div>
-        <p class="theme">紅葉散歩と、文化祭</p>
-        <div class="meta"><span>支援者 1名 / ¥500</span><span class="arrow">→</span></div>
+        <p class="theme">紅葉散歩と、文化祭 — リハビリ専門職の常駐化</p>
+        <div class="meta"><span>21万名 / ¥2,100万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
       <a href="./2025-09.html" class="month-card">
-        <img src="/assets/images/month-2025-09-keiroukai.webp" alt="敬老会" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2025-09-keiroukai.webp" alt="敬老の日と、開業1周年 — 看護師1名増員" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">September 2025</div>
         <div class="period-ja">2025年9月</div>
-        <p class="theme">敬老の日と、開業1周年</p>
-        <div class="meta"><span>支援者 1名 / ¥400</span><span class="arrow">→</span></div>
+        <p class="theme">敬老の日と、開業1周年 — 看護師1名増員</p>
+        <div class="meta"><span>14.5万名 / ¥1,450万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
       <a href="./2025-08.html" class="month-card">
-        <img src="/assets/images/month-2025-08-natsumatsuri.webp" alt="夏祭り" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2025-08-natsumatsuri.webp" alt="夏祭り、そして暑さとの向き合い方 — 夏季体制の強化" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">August 2025</div>
         <div class="period-ja">2025年8月</div>
-        <p class="theme">夏祭り、そして暑さとの向き合い方</p>
-        <div class="meta"><span>支援者 1名 / ¥300</span><span class="arrow">→</span></div>
+        <p class="theme">夏祭り、そして暑さとの向き合い方 — 夏季体制の強化</p>
+        <div class="meta"><span>8.5万名 / ¥850万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
       <a href="./2025-07.html" class="month-card">
-        <img src="/assets/images/month-2025-07-tanabata.webp" alt="七夕飾り" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2025-07-tanabata.webp" alt="七夕、そして夏のしつらえ — 月額負担減額の実現" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">July 2025</div>
         <div class="period-ja">2025年7月</div>
-        <p class="theme">七夕、そして夏のしつらえ</p>
-        <div class="meta"><span>支援者 1名 / ¥200</span><span class="arrow">→</span></div>
+        <p class="theme">七夕、そして夏のしつらえ — 月額負担減額の実現</p>
+        <div class="meta"><span>3.8万名 / ¥380万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
       <a href="./2025-06.html" class="month-card">
-        <img src="/assets/images/month-2025-06-ajisai.webp" alt="梅雨・紫陽花鑑賞会" class="thumb" loading="lazy">
+        <img src="/assets/images/month-2025-06-ajisai.webp" alt="梅雨を、室内の彩りで楽しむ — Care Support Pass 導入の月" class="thumb" loading="lazy">
         <div class="body">
         <div class="period-en">June 2025</div>
         <div class="period-ja">2025年6月</div>
-        <p class="theme">梅雨を、室内の彩りで楽しむ</p>
-        <div class="meta"><span>支援者 1名 / ¥100</span><span class="arrow">→</span></div>
+        <p class="theme">梅雨を、室内の彩りで楽しむ — Care Support Pass 導入の月</p>
+        <div class="meta"><span>1.2万名 / ¥120万</span><span class="arrow">→</span></div>
       </div>
       </a>
 
