@@ -2,6 +2,7 @@
 """
 タムジレジデンス日本橋 / Care Support Pass 月次活動報告書 一括生成スクリプト
 _data.json を読み込み、12ヶ月分のHTMLを出力する。
+画像はWebPで /assets/images/ に配置されている前提。
 """
 
 import json
@@ -11,8 +12,6 @@ from html import escape
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_FILE = os.path.join(BASE_DIR, "_data.json")
 OUT_DIR = BASE_DIR
-
-# ===== テンプレート =====
 
 REPORT_TEMPLATE = """<!doctype html>
 <html lang="ja">
@@ -24,6 +23,7 @@ REPORT_TEMPLATE = """<!doctype html>
 <meta property="og:title" content="{period_ja} 活動報告 | タムジレジデンス日本橋">
 <meta property="og:description" content="{theme}">
 <meta property="og:type" content="article">
+<meta property="og:image" content="https://residence.tamjump.com{og_image_abs}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -68,8 +68,8 @@ REPORT_TEMPLATE = """<!doctype html>
   <section class="report-section">
     <div class="section-title">In Focus</div>
     <h2 class="section-h">今月の主な瞬間</h2>
-    <figure class="photo-figure">
-      <div class="photo-placeholder">{hero_image_label}<br>(画像準備中)</div>
+    <figure class="photo-figure" style="aspect-ratio:auto">
+      <img src="{hero_image}" alt="{hero_image_alt}" loading="lazy">
       <figcaption>{hero_caption}</figcaption>
     </figure>
   </section>
@@ -121,9 +121,7 @@ REPORT_TEMPLATE = """<!doctype html>
   <!-- 月ナビ -->
   <div class="report-footer">
     <div class="report-footer-in">
-      <div>
-        前月 / 翌月の活動報告へ
-      </div>
+      <div>前月 / 翌月の活動報告へ</div>
       <div class="month-nav">
 {month_nav}
       </div>
@@ -157,12 +155,12 @@ REPORT_TEMPLATE = """<!doctype html>
 </html>
 """
 
-# 月の英語名 (Cormorant Garamond で美しく見せる用)
 EN_MONTHS = {
     "01": "January", "02": "February", "03": "March", "04": "April",
     "05": "May", "06": "June", "07": "July", "08": "August",
     "09": "September", "10": "October", "11": "November", "12": "December",
 }
+
 
 def render_kpi(kpi_list):
     parts = []
@@ -178,18 +176,16 @@ def render_photos(photos):
     parts = []
     for p in photos:
         parts.append(f"""      <figure class="photo-figure">
-        <div class="photo-placeholder">{escape(p['label'])}<br>(画像準備中)</div>
+        <img src="{escape(p['image'])}" alt="{escape(p['alt'])}" loading="lazy">
         <figcaption>{escape(p['caption'])}</figcaption>
       </figure>""")
     return "\n".join(parts)
 
 
 def render_body(body_list):
-    """body_list: [[heading, paragraph_or_None, list_items_or_None?], ...]"""
     parts = []
     for item in body_list:
         heading = item[0]
-        # 各エントリは [heading, body_text] か [heading, body_text_or_None, [list_items]]
         body_text = item[1] if len(item) > 1 else None
         list_items = item[2] if len(item) > 2 else None
         parts.append(f"      <h3>{escape(heading)}</h3>")
@@ -216,7 +212,6 @@ def render_month_nav(periods, current_idx):
 
 
 def render_message(msg):
-    # 改行は <br> に変換 (white-space: pre-line でも対応されているが、念のため両対応)
     return escape(msg).replace("\n", "<br>")
 
 
@@ -226,12 +221,15 @@ def main():
     periods = [m["period"] for m in months]
 
     for idx, m in enumerate(months):
-        period = m["period"]               # 2025-06
+        period = m["period"]
         year, mm = period.split("-")
         period_en = f"{EN_MONTHS[mm]} {year}"
         period_ja = m["period_ja"]
         theme = m["theme"]
-        hero_image_label = m["hero_image_label"]
+        hero_image = m["hero_image"]
+        # OG画像用の絶対URL用パス (../assets/... → /assets/...)
+        og_image_abs = hero_image.replace("../", "/")
+        hero_image_alt = m.get("hero_image_alt", "")
         hero_caption = m["hero_caption"]
         lede = m["lede"]
         kpi_blocks = render_kpi(m["kpi"])
@@ -249,7 +247,9 @@ def main():
             period_en=period_en,
             period_ja=period_ja,
             theme=escape(theme),
-            hero_image_label=escape(hero_image_label),
+            hero_image=escape(hero_image),
+            og_image_abs=escape(og_image_abs),
+            hero_image_alt=escape(hero_image_alt),
             hero_caption=escape(hero_caption),
             lede=escape(lede),
             kpi_blocks=kpi_blocks,
