@@ -628,6 +628,165 @@ a:hover { color: var(--ink); }
   color: var(--green);
 }
 
+/* === PL Comparison table (通常モデル vs CSP導入モデル) === */
+.finance-pl-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(155, 106, 63, 0.025) 100%);
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+.finance-pl-lede {
+  font-family: var(--jp-serif);
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--ink-2);
+  margin: 0 0 18px;
+  max-width: 880px;
+}
+.finance-pl-lede strong {
+  color: var(--ink);
+  font-weight: 600;
+  background: linear-gradient(180deg, transparent 60%, rgba(184, 153, 104, 0.25) 60%);
+  padding: 0 2px;
+}
+.finance-pl-wrap {
+  background: #fff;
+  border: 1px solid var(--line);
+  overflow-x: auto;
+}
+.finance-pl-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  min-width: 760px;
+}
+.finance-pl-table thead th {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--paper-2);
+  font-weight: 500;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1.5px solid var(--ink);
+  white-space: nowrap;
+}
+.finance-pl-table thead th.num { text-align: right; }
+.finance-pl-table thead th small {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 9px;
+  display: block;
+  letter-spacing: .04em;
+  color: var(--muted);
+  margin-top: 2px;
+  text-transform: none;
+  font-weight: 400;
+}
+.finance-pl-table tbody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--paper-2);
+  vertical-align: middle;
+}
+.finance-pl-table td.num {
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.finance-pl-table td.num.pos {
+  color: var(--green);
+  font-weight: 600;
+}
+.finance-pl-table td.num.neg {
+  color: #a23a2e;
+  font-weight: 500;
+}
+.finance-pl-table tr.group td {
+  background: var(--paper-2);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 600;
+  padding: 8px 12px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.finance-pl-table tr.subtotal td {
+  background: rgba(155, 106, 63, 0.04);
+  font-weight: 600;
+  border-top: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+.finance-pl-table tr.subtotal td:first-child {
+  color: var(--accent);
+}
+.finance-pl-table tr.total td {
+  background: rgba(59, 95, 59, 0.06);
+  font-weight: 700;
+  border-top: 2px solid var(--green);
+  border-bottom: 2px solid var(--green);
+  padding: 12px 12px;
+  font-size: 13px;
+}
+.finance-pl-table tr.total td:first-child {
+  color: var(--green);
+}
+
+/* === Breakdown bars (5使途) === */
+.finance-breakdown {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.bd-row-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+  font-size: 12.5px;
+}
+.bd-label {
+  font-family: var(--jp-serif);
+  color: var(--ink);
+  font-weight: 600;
+}
+.bd-amount {
+  font-family: var(--mono);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 12px;
+}
+.bd-amount small {
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 4px;
+  font-size: 10px;
+}
+.bd-bar-bg {
+  height: 8px;
+  background: var(--paper-2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.bd-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width .4s ease;
+}
+.bd-support_resident .bd-bar-fill { background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+.bd-support_staff .bd-bar-fill { background: linear-gradient(90deg, #6a8caa, #95b3cc); }
+.bd-support_initial .bd-bar-fill { background: linear-gradient(90deg, var(--green), #6b9c6b); }
+.bd-ops_transparency .bd-bar-fill { background: linear-gradient(90deg, #8a6a9c, #ab8ec0); }
+.bd-reserve .bd-bar-fill { background: linear-gradient(90deg, #8a8275, #aba38e); }
+
 /* === Finance use-of-funds block === */
 .finance-use {
   background: var(--paper-2);
