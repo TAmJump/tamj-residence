@@ -103,23 +103,70 @@
         openLightbox(img, 'image');
       });
     });
-    document.querySelectorAll('.finance-table-wrap, .finance-pl-wrap').forEach(function (wrap) {
-      wrap.classList.add('lb-trigger');
+    // 既知のラッパ + data-zoom 属性
+    document.querySelectorAll('.finance-table-wrap, .finance-pl-wrap, [data-zoom="table"]').forEach(function (wrap) {
+      wrap.classList.add('lb-trigger', 'table-trigger');
       wrap.addEventListener('click', function (e) {
-        // テーブル内のリンクは普通に動かす
-        if (e.target.tagName === 'A') return;
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
         openLightbox(wrap, 'table');
       });
     });
-    document.querySelectorAll('.finance-chart .chart-svg').forEach(function (svg) {
+    document.querySelectorAll('.finance-chart .chart-svg, [data-zoom="chart"] svg').forEach(function (svg) {
       svg.classList.add('lb-trigger');
       svg.addEventListener('click', function (e) {
         e.preventDefault();
-        // figure ごとクローンしてタイトルも一緒に出す
-        var fig = svg.closest('figure') || svg;
+        var fig = svg.closest('figure, [data-zoom="chart"]') || svg;
         openLightbox(fig, 'chart');
       });
     });
+    document.querySelectorAll('[data-zoom="image"]').forEach(function (el) {
+      el.classList.add('lb-trigger');
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        openLightbox(el, 'image');
+      });
+    });
+
+    // モバイル時、画面幅をはみ出るテーブルを自動的に zoom 対象化
+    if (window.matchMedia('(max-width: 720px)').matches) {
+      document.querySelectorAll('main table, section table, .card table').forEach(function (table) {
+        // 既に lb-trigger なら skip
+        if (table.closest('.lb-trigger')) return;
+        var parent = table.parentElement;
+        if (!parent) return;
+        // 1フレーム遅延でレイアウト完了を待つ
+        requestAnimationFrame(function () {
+          // ビューポートよりテーブルが広いとき
+          var vw = document.documentElement.clientWidth;
+          if (table.scrollWidth > vw - 32) {
+            // 親が main/section/body 等の大きい要素なら、テーブル自体を zoom 対象化
+            // (親を覆うと画面全体がクリック対象になってしまう)
+            var bigParents = ['MAIN', 'SECTION', 'BODY', 'ARTICLE'];
+            var triggerEl;
+            if (bigParents.indexOf(parent.tagName) !== -1 || parent.clientWidth > vw * 0.85) {
+              // テーブル自身を div でラップして trigger 化
+              var wrap = document.createElement('div');
+              wrap.className = 'lb-trigger table-trigger';
+              wrap.style.position = 'relative';
+              wrap.style.cursor = 'zoom-in';
+              wrap.style.overflowX = 'hidden';
+              parent.insertBefore(wrap, table);
+              wrap.appendChild(table);
+              triggerEl = wrap;
+            } else {
+              parent.classList.add('lb-trigger', 'table-trigger');
+              parent.style.cursor = 'zoom-in';
+              parent.style.overflowX = 'hidden';
+              triggerEl = parent;
+            }
+            triggerEl.addEventListener('click', function (e) {
+              if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+              openLightbox(triggerEl, 'table');
+            });
+          }
+        });
+      });
+    }
   }
 
   // 起動
