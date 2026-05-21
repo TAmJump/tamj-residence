@@ -90,10 +90,111 @@ a:hover { color: var(--ink); }
 }
 .nav-link:hover { color: #fff; }
 .nav-link.active { color: var(--gold); }
+
+/* ====================== Mobile nav (residence top) ====================== */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  width: 40px;
+  height: 36px;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+.nav-toggle svg { display: block; width: 18px; height: 18px; }
+.nav-toggle:hover { background: rgba(255,255,255,.08); }
+.nav-toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.nav-drawer-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(15,26,43,0);
+  z-index: 998;
+  pointer-events: none;
+  transition: background .25s ease;
+}
+.nav-drawer-backdrop.open {
+  background: rgba(15,26,43,.7);
+  pointer-events: auto;
+}
+.nav-drawer {
+  position: fixed;
+  top: 0; right: 0;
+  height: 100vh; height: 100dvh;
+  width: 84vw; max-width: 320px;
+  background: var(--navy, #0F1A2B);
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(.22,.61,.36,1);
+  display: flex; flex-direction: column;
+  box-shadow: -16px 0 48px rgba(0,0,0,.4);
+  visibility: hidden;
+}
+.nav-drawer.open { transform: translateX(0); visibility: visible; }
+.nav-drawer-head {
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.nav-drawer-head .mark {
+  font-family: var(--serif, Georgia,serif);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: .14em;
+  display: block;
+  margin-bottom: 6px;
+}
+.nav-drawer-head .name {
+  font-family: var(--jp-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+.nav-drawer-links {
+  display: flex; flex-direction: column;
+  padding: 12px 0;
+  flex: 1;
+}
+.nav-drawer-links a {
+  display: block;
+  padding: 14px 24px;
+  color: rgba(255,255,255,.78);
+  text-decoration: none;
+  font-family: var(--jp-serif);
+  font-size: 14px;
+  border-left: 3px solid transparent;
+}
+.nav-drawer-links a:hover,
+.nav-drawer-links a:active,
+.nav-drawer-links a.active {
+  background: rgba(255,255,255,.05);
+  color: #fff;
+  border-left-color: var(--gold);
+}
+.nav-drawer-foot {
+  padding: 16px 24px;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .12em;
+  color: rgba(255,255,255,.4);
+  border-top: 1px solid rgba(255,255,255,.08);
+}
 @media (max-width: 720px) {
   .nav-in { padding: 0 16px; height: 60px; }
   .nav-menu { display: none; }
-  .nav-brand .name { display: none; }
+  .nav-toggle { display: inline-flex; }
+  .nav-brand .name {
+    display: inline;
+    font-size: 12px;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 50vw;
+  }
+  .nav-brand .mark { font-size: 11px; }
 }
 
 /* === Hero === */
@@ -263,6 +364,10 @@ img.img-photo {
 @media (max-width: 880px) {
   .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
 }
+@media (max-width: 540px) {
+  .footer-top { grid-template-columns: 1fr; gap: 22px; padding-bottom: 28px; margin-bottom: 28px; }
+  .footer { padding: 40px 0 24px; }
+}
 .footer-brand .mark {
   font-family: var(--serif);
   font-style: italic;
@@ -379,4 +484,44 @@ img.img-photo {
   background: var(--paper-2);
   width: 200px;
   white-space: nowrap;
+}
+
+/* =================== Additional mobile polish =================== */
+@media (max-width: 720px) {
+  /* Hero */
+  .hero { padding: 80px 0 64px; }
+  .hero h1 { font-size: clamp(28px, 7vw, 40px); line-height: 1.18; }
+  .hero .lead { font-size: 14px; }
+
+  /* Sections */
+  section { padding: 56px 0; }
+  .section-title { font-size: 11px; letter-spacing: .18em; }
+  .section-h { font-size: clamp(24px, 6vw, 32px); }
+
+  /* About テーブル: label列を狭く、wrap許可 */
+  .tbl td.label {
+    width: auto;
+    white-space: normal;
+    font-size: 10px;
+    padding: 12px 12px;
+  }
+  .tbl td { padding: 12px 12px; font-size: 12.5px; line-height: 1.7; }
+  .tbl thead th { padding: 10px 12px; font-size: 9px; }
+
+  /* Buttons は full-width に */
+  .btn { padding: 14px 22px; font-size: 13px; }
+
+  /* Cards: padding 縮め */
+  .card { padding: 22px 20px; }
+
+  /* Grid 2列 → 1列にしておく系 */
+  .grid-services { grid-template-columns: 1fr !important; }
+  .grid-2 { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 420px) {
+  .hero { padding: 60px 0 50px; }
+  .hero h1 { font-size: 26px; }
+  section { padding: 44px 0; }
+  .wrap { padding: 0 16px; }
 }

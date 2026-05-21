@@ -25,7 +25,31 @@
       <a href="/carepass/" class="nav-link">活動報告</a>
     </div>
   </div>
+  <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-drawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
 </nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer-backdrop" aria-hidden="true"></div>
+<aside class="nav-drawer" id="nav-drawer" aria-label="メニュー">
+  <div class="nav-drawer-head">
+    <span class="mark">TAMJ.Corp Care Division</span>
+    <span class="name">タムジレジデンス日本橋</span>
+  </div>
+  <nav class="nav-drawer-links">
+    <a href="/">トップ</a>
+    <a href="/services.html">サービス</a>
+    <a href="/about.html" class="active">運営者情報</a>
+    <a href="/carepass/">月次活動報告</a>
+  </nav>
+  <div class="nav-drawer-foot">© TAMJ.Corp Care Division</div>
+</aside>
+
 
 <header class="hero" style="padding:80px 0 60px">
   <div class="wrap hero-in">
@@ -163,6 +187,9 @@
     </div>
   </div>
 </footer>
+
+
+<script src="/assets/js/mobile-ux.js?v=20260521a" defer></script>
 
 </body>
 </html>

@@ -31,7 +31,7 @@ REPORT_TEMPLATE = """<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/report.css?v=20260521a">
+<link rel="stylesheet" href="./assets/css/report.css?v=20260521b">
 </head>
 <body>
 
@@ -46,8 +46,31 @@ REPORT_TEMPLATE = """<!doctype html>
       <a href="./">活動報告 一覧</a>
       <a href="https://carepass.tamjump.com" target="_blank" rel="noopener">Care Support Pass</a>
     </div>
+    <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-drawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer-backdrop" aria-hidden="true"></div>
+<aside class="nav-drawer" id="nav-drawer" aria-label="メニュー">
+  <div class="nav-drawer-head">
+    <span class="mark">TAMJ.Corp</span>
+    <span class="name">タムジレジデンス日本橋</span>
+  </div>
+  <nav class="nav-drawer-links">
+    <a href="https://residence.tamjump.com/">施設サイト トップ</a>
+    <a href="https://residence.tamjump.com/about.html">運営者情報</a>
+    <a href="./">月次活動報告 一覧</a>
+    <a href="https://carepass.tamjump.com" target="_blank" rel="noopener">Care Support Pass (外部)</a>
+  </nav>
+  <div class="nav-drawer-foot">© TAMJ.Corp Care Division</div>
+</aside>
 
 <main class="report">
 
@@ -245,6 +268,8 @@ REPORT_TEMPLATE = """<!doctype html>
   </div>
 </footer>
 
+<script src="./assets/js/mobile-ux.js?v=20260521a" defer></script>
+
 </body>
 </html>
 """
@@ -259,7 +284,7 @@ INDEX_TEMPLATE = """<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/report.css?v=20260521a">
+<link rel="stylesheet" href="./assets/css/report.css?v=20260521b">
 <style>
 .list-grid {{
   display: grid;
@@ -407,8 +432,31 @@ INDEX_TEMPLATE = """<!doctype html>
       <a href="./">活動報告 一覧</a>
       <a href="https://carepass.tamjump.com" target="_blank" rel="noopener">Care Support Pass</a>
     </div>
+    <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-drawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer-backdrop" aria-hidden="true"></div>
+<aside class="nav-drawer" id="nav-drawer" aria-label="メニュー">
+  <div class="nav-drawer-head">
+    <span class="mark">TAMJ.Corp</span>
+    <span class="name">タムジレジデンス日本橋</span>
+  </div>
+  <nav class="nav-drawer-links">
+    <a href="https://residence.tamjump.com/">施設サイト トップ</a>
+    <a href="https://residence.tamjump.com/about.html">運営者情報</a>
+    <a href="./">月次活動報告 一覧</a>
+    <a href="https://carepass.tamjump.com" target="_blank" rel="noopener">Care Support Pass (外部)</a>
+  </nav>
+  <div class="nav-drawer-foot">© TAMJ.Corp Care Division</div>
+</aside>
 
 <main class="report">
 
@@ -480,6 +528,8 @@ INDEX_TEMPLATE = """<!doctype html>
     </div>
   </div>
 </footer>
+
+<script src="./assets/js/mobile-ux.js?v=20260521a" defer></script>
 
 </body>
 </html>
