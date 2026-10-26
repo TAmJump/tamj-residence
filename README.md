@@ -3,7 +3,7 @@
 東京・日本橋に佇む医療対応型 住宅型有料老人ホーム「タムジレジデンス日本橋」の公式サイト。
 タムジcare株式会社 (TAMJ.Corp Care Division) が運営。
 
-公開先: **https://residence.tamjump.com** (Cloudflare Pages)
+公開先: **https://residence.115en.com** (Cloudflare Pages)
 
 ## 構成
 
@@ -42,7 +42,7 @@ python3 _generate.py
 3. ビルド設定:
    - Build command: (なし)
    - Build output directory: `/`
-4. カスタムドメイン `residence.tamjump.com` を追加 (CNAME 自動設定)
+4. カスタムドメイン `residence.115en.com` を追加 (CNAME 自動設定)
 
 ## 画像差し替え
 
@@ -54,5 +54,5 @@ python3 _generate.py
 
 ## Care Support Pass 連携
 
-当施設は `https://carepass.tamjump.com` の導入施設 (facility_id=`facility_demo`)。
-月次報告書のベースURL: `https://residence.tamjump.com/carepass/{period}.html`
+当施設は `https://carepass.115en.com` の導入施設 (facility_id=`facility_demo`)。
+月次報告書のベースURL: `https://residence.115en.com/carepass/{period}.html`

@@ -27,7 +27,7 @@ REPORT_TEMPLATE = """<!doctype html>
 <meta property="og:title" content="{period_ja} 活動報告 | タムジレジデンス日本橋">
 <meta property="og:description" content="{theme}">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://residence.tamjump.com{og_image_abs}">
+<meta property="og:image" content="https://residence.115en.com{og_image_abs}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -37,14 +37,14 @@ REPORT_TEMPLATE = """<!doctype html>
 
 <nav class="report-nav">
   <div class="report-nav-in">
-    <a href="https://residence.tamjump.com/" class="report-nav-brand" style="text-decoration:none">
+    <a href="https://residence.115en.com/" class="report-nav-brand" style="text-decoration:none">
       <span class="mark">TAMJ.Corp</span>
       <span class="name">タムジレジデンス日本橋</span>
     </a>
     <div class="report-nav-links">
-      <a href="https://residence.tamjump.com/">トップ</a>
+      <a href="https://residence.115en.com/">トップ</a>
       <a href="./">活動報告 一覧</a>
-      <a href="https://carepass.tamjump.com" target="_blank" rel="noopener">Care Support Pass</a>
+      <a href="https://carepass.115en.com" target="_blank" rel="noopener">Care Support Pass</a>
     </div>
     <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-drawer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -64,10 +64,10 @@ REPORT_TEMPLATE = """<!doctype html>
     <span class="name">タムジレジデンス日本橋</span>
   </div>
   <nav class="nav-drawer-links">
-    <a href="https://residence.tamjump.com/">施設サイト トップ</a>
-    <a href="https://residence.tamjump.com/about.html">運営者情報</a>
+    <a href="https://residence.115en.com/">施設サイト トップ</a>
+    <a href="https://residence.115en.com/about.html">運営者情報</a>
     <a href="./">月次活動報告 一覧</a>
-    <a href="https://carepass.tamjump.com" target="_blank" rel="noopener">Care Support Pass (外部)</a>
+    <a href="https://carepass.115en.com" target="_blank" rel="noopener">Care Support Pass (外部)</a>
   </nav>
   <div class="nav-drawer-foot">© TAMJ.Corp Care Division</div>
 </aside>
@@ -223,7 +223,7 @@ REPORT_TEMPLATE = """<!doctype html>
     </div>
 
     <small style="margin-top:18px;color:var(--muted);font-family:var(--jp-serif);font-size:12px;display:block">
-      ※ 当施設は <a href="https://carepass.tamjump.com" target="_blank" rel="noopener">Care Support Pass</a> 導入施設です。会員の方からの月額¥250 / 1口の支援金を、本人負担軽減・スタッフ配置増/賃金改善・初期費用支援・月次報告監査・予備費の5原資に分けて運用しています。
+      ※ 当施設は <a href="https://carepass.115en.com" target="_blank" rel="noopener">Care Support Pass</a> 導入施設です。会員の方からの月額¥250 / 1口の支援金を、本人負担軽減・スタッフ配置増/賃金改善・初期費用支援・月次報告監査・予備費の5原資に分けて運用しています。
       目標支援者数 12万人 (月¥3,000万 / 年¥3.6億) は、当施設規模 (60室住宅型有料老人ホーム) に基づく設定です。
     </small>
   </section>
@@ -257,9 +257,9 @@ REPORT_TEMPLATE = """<!doctype html>
         <p>運営: タムジcare株式会社</p>
       </div>
       <div>
-        <p><a href="https://residence.tamjump.com/" style="color:rgba(246,241,232,.75)">施設サイト トップ</a></p>
-        <p><a href="https://residence.tamjump.com/about.html" style="color:rgba(246,241,232,.75)">運営者情報</a></p>
-        <p><a href="https://carepass.tamjump.com" target="_blank" rel="noopener" style="color:rgba(246,241,232,.75)">Care Support Pass</a></p>
+        <p><a href="https://residence.115en.com/" style="color:rgba(246,241,232,.75)">施設サイト トップ</a></p>
+        <p><a href="https://residence.115en.com/about.html" style="color:rgba(246,241,232,.75)">運営者情報</a></p>
+        <p><a href="https://carepass.115en.com" target="_blank" rel="noopener" style="color:rgba(246,241,232,.75)">Care Support Pass</a></p>
       </div>
     </div>
     <div class="site-footer-bot">
@@ -423,14 +423,14 @@ INDEX_TEMPLATE = """<!doctype html>
 
 <nav class="report-nav">
   <div class="report-nav-in">
-    <a href="https://residence.tamjump.com/" class="report-nav-brand" style="text-decoration:none">
+    <a href="https://residence.115en.com/" class="report-nav-brand" style="text-decoration:none">
       <span class="mark">TAMJ.Corp</span>
       <span class="name">タムジレジデンス日本橋</span>
     </a>
     <div class="report-nav-links">
-      <a href="https://residence.tamjump.com/">トップ</a>
+      <a href="https://residence.115en.com/">トップ</a>
       <a href="./">活動報告 一覧</a>
-      <a href="https://carepass.tamjump.com" target="_blank" rel="noopener">Care Support Pass</a>
+      <a href="https://carepass.115en.com" target="_blank" rel="noopener">Care Support Pass</a>
     </div>
     <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-drawer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -450,10 +450,10 @@ INDEX_TEMPLATE = """<!doctype html>
     <span class="name">タムジレジデンス日本橋</span>
   </div>
   <nav class="nav-drawer-links">
-    <a href="https://residence.tamjump.com/">施設サイト トップ</a>
-    <a href="https://residence.tamjump.com/about.html">運営者情報</a>
+    <a href="https://residence.115en.com/">施設サイト トップ</a>
+    <a href="https://residence.115en.com/about.html">運営者情報</a>
     <a href="./">月次活動報告 一覧</a>
-    <a href="https://carepass.tamjump.com" target="_blank" rel="noopener">Care Support Pass (外部)</a>
+    <a href="https://carepass.115en.com" target="_blank" rel="noopener">Care Support Pass (外部)</a>
   </nav>
   <div class="nav-drawer-foot">© TAMJ.Corp Care Division</div>
 </aside>
@@ -465,7 +465,7 @@ INDEX_TEMPLATE = """<!doctype html>
     <div class="report-period">2025 / 26 ─ 12 months</div>
     <h1>月次活動報告書</h1>
     <p class="report-lede">
-      タムジレジデンス日本橋は <a href="https://carepass.tamjump.com" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Care Support Pass</a> の導入施設として、毎月の活動状況・支援者数・収支の使い道を公開しています。
+      タムジレジデンス日本橋は <a href="https://carepass.115en.com" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Care Support Pass</a> の導入施設として、毎月の活動状況・支援者数・収支の使い道を公開しています。
     </p>
   </section>
 
@@ -518,9 +518,9 @@ INDEX_TEMPLATE = """<!doctype html>
         <p>運営: タムジcare株式会社</p>
       </div>
       <div>
-        <p><a href="https://residence.tamjump.com/" style="color:rgba(246,241,232,.75)">施設サイト トップ</a></p>
-        <p><a href="https://residence.tamjump.com/about.html" style="color:rgba(246,241,232,.75)">運営者情報</a></p>
-        <p><a href="https://carepass.tamjump.com" target="_blank" rel="noopener" style="color:rgba(246,241,232,.75)">Care Support Pass</a></p>
+        <p><a href="https://residence.115en.com/" style="color:rgba(246,241,232,.75)">施設サイト トップ</a></p>
+        <p><a href="https://residence.115en.com/about.html" style="color:rgba(246,241,232,.75)">運営者情報</a></p>
+        <p><a href="https://carepass.115en.com" target="_blank" rel="noopener" style="color:rgba(246,241,232,.75)">Care Support Pass</a></p>
       </div>
     </div>
     <div class="site-footer-bot">
